@@ -506,7 +506,9 @@ def edit_car(car_id):
     return render_template('edit_car.html', car=car)
 
 if __name__ == '__main__': 
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Используйте порт из Render или 5000 по умолчанию
+    app.run(host='0.0.0.0', port=port, debug=True)
+    
 
 
 
