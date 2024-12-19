@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Записаться на тест-драйв
+{% endblock %}
+
+{% block content %}
+<div class="test-drive-form">
+    <h2>Записаться на тест-драйв</h2>
+    {% if user %}
+    <form action="{{ url_for('submit_test_drive') }}" method="post">
+        <input type="hidden" name="car_id" value="{{ car.id }}">
+        <label for="fio">ФИО:</label>
+        <input type="text" id="fio" name="fio" value="{{ user.FIO }}" required>
+        <label for="phone">Телефон:</label>
+        <input type="text" id="phone" name="phone" value="{{ user.phone }}" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required>
+        <p><label for="test_drive_time">Выберите удобное время для тест-драйва:</label></p>
+        <input type="datetime-local" id="test_drive_time" name="test_drive_time" required>
+        <button type="submit" class="btn btn-primary">Записаться</button>
+    </form>
+    {% else %}
+    <p>Пожалуйста, <a href="{{ url_for('login') }}">войдите в систему</a>, чтобы записаться на тест-драйв.</p>
+    {% endif %}
+</div>
+{% endblock %}

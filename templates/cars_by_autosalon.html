@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ autosalon.name }}
+{% endblock %}
+
+{% block content %}
+<div class="cars-by-autosalon-page">
+    <h2>Автомобили автосалона {{ autosalon.name }}</h2>
+    <p>{{ autosalon.address }}</p>
+    <p>{{ autosalon.description }}</p>
+    
+    {% if managers %}
+        <p> Телефон для связи: {{managers[0].phone}}</p>
+        <p>Почта для связи: {{managers[0].email}}</p>
+    {% else %}
+        <p>Информация о менеджерах отсутствует.</p>
+    {% endif %}
+    
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for car in cars %}
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{{ url_for('static', filename='img/' + car.id|string + '/1.jpg') }}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Фото автомобиля">
+                <div class="card-body">
+                    <p class="card-text">{{ car.brend|string + " " + car.model + " " + car.year|string + " " + car.motor_volume + " " + car.transmission }}</p>
+                    <p class="card-text price">Цена: <span class="price-value">{{ car.price }} руб.</span> </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{{ url_for('car_details', car_id=car.id) }}" class="btn btn-sm btn-outline-secondary">Показать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<div class="text-center">
+  Представлены автомобили только из автосалона {{ autosalon.name }}
+</div>
+{% endblock %}

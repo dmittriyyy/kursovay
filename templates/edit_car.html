@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование автомобиля{% endblock %}
+
+{% block content %}
+<div class="car-edit-page">
+    <h2>Редактирование автомобиля</h2>
+    <form action="{{ url_for('edit_car', car_id=car.id) }}" method="post" enctype="multipart/form-data" onsubmit="disableButton(this)">
+        <div class="form-group">
+            <label for="model">Модель</label>
+            <input type="text" class="form-control" id="model" name="model" value="{{ car.model }}" required>
+        </div>
+        <div class="form-group">
+            <label for="brend">Бренд</label>
+            <input type="text" class="form-control" id="brend" name="brend" value="{{ car.brend }}" required>
+        </div>
+        <div class="form-group">
+            <label for="body_type">Тип кузова</label>
+            <input type="text" class="form-control" id="body_type" name="body_type" value="{{ car.body_type }}" required>
+        </div>
+        <div class="form-group">
+            <label for="drive_type">Привод</label>
+            <input type="text" class="form-control" id="drive_type" name="drive_type" value="{{ car.drive_type }}" required>
+        </div>
+        <div class="form-group">
+            <label for="vin">VIN</label>
+            <input type="text" class="form-control" id="vin" name="vin" value="{{ car.VIN }}" required>
+        </div>
+        <div class="form-group">
+            <label for="year">Год</label>
+            <input type="number" class="form-control" id="year" name="year" value="{{ car.year }}" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Цена</label>
+            <input type="number" class="form-control" id="price" name="price" value="{{ car.price }}" required>
+        </div>
+        <div class="form-group">
+            <label for="mileage">Пробег</label>
+            <input type="number" class="form-control" id="mileage" name="mileage" value="{{ car.mileage }}" required>
+        </div>
+        <div class="form-group">
+            <label for="fuel_type">Тип топлива</label>
+            <input type="text" class="form-control" id="fuel_type" name="fuel_type" value="{{ car.type_fuel }}" required>
+        </div>
+        <div class="form-group">
+            <label for="fuel_consumption">Расход топлива</label>
+            <input type="text" class="form-control" id="fuel_consumption" name="fuel_consumption" value="{{ car.fuel_consumption }}" required>
+        </div>
+        <div class="form-group">
+            <label for="color">Цвет</label>
+            <input type="text" class="form-control" id="color" name="color" value="{{ car.color }}" required>
+        </div>
+        <div class="form-group">
+            <label for="motor_volume">Объем мотора</label>
+            <input type="text" class="form-control" id="motor_volume" name="motor_volume" value="{{ car.motor_volume }}" required>
+        </div>
+        <div class="form-group">
+            <label for="transmission">Трансмиссия</label>
+            <input type="text" class="form-control" id="transmission" name="transmission" value="{{ car.transmission }}" required>
+        </div>
+        <div class="form-group">
+            <label for="horsepower">Мощность двигателя (л.с.)</label>
+            <input type="number" class="form-control" id="horsepower" name="horsepower" value="{{ car.horsepower }}" required>
+        </div>
+        <div class="form-group">
+            <label for="reliable">Надежность</label>
+            <input type="checkbox" class="form-check-input" id="reliable" name="reliable" {% if car.reliable %}checked{% endif %}>
+        </div>
+        <div class="form-group">
+            <label for="economical">Экономичность</label>
+            <input type="checkbox" class="form-check-input" id="economical" name="economical" {% if car.economical %}checked{% endif %}>
+        </div>
+        <div class="form-group">
+            <label for="for_evening_walk">Быстрый</label>
+            <input type="checkbox" class="form-check-input" id="for_evening_walk" name="for_evening_walk" {% if car.for_evening_walk %}checked{% endif %}>
+        </div>
+        <div class="form-group">
+            <label for="aesthetic">Новый</label>
+            <input type="checkbox" class="form-check-input" id="aesthetic" name="aesthetic" {% if car.aesthetic %}checked{% endif %}>
+        </div>
+        <div class="form-group">
+            <label for="images">Фотографии</label>
+            <input type="file" class="form-control" id="images" name="images" multiple>
+        </div>
+        <button type="submit" class="btn btn-success">Сохранить изменения</button>
+    </form>
+</div>
+{% endblock %}

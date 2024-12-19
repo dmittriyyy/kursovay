@@ -1,0 +1,22 @@
+if horsepower:
+        try:
+            min_hp, max_hp = map(int, horsepower.split("-"))
+            query = query.filter(Cars.horsepower.between(min_hp, max_hp))
+        except ValueError:
+            pass  # Handle invalid horsepower range
+    if transmission:
+        transmission = transmission.lower()  # Приводим значение фильтра к нижнему регистру
+        query = query.filter(func.lower(Cars.transmission) == transmission)
+    if body_type:
+        body_type = body_type.lower()  # Приводим значение фильтра к нижнему регистру
+        query = query.filter(func.lower(Cars.body_type) == body_type)
+    if mileage:
+        try:
+            min_mileage, max_mileage = map(int, mileage.split("-"))
+            query = query.filter(Cars.mileage.between(min_mileage, max_mileage))
+        except ValueError:
+            pass  # Handle invalid mileage range
+    if reliable:
+        query = query.filter(Cars.reliable == True)
+    if economical:
+        query = query.filter(Cars.economical == True)

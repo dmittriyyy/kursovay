@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ car.brend + " " + car.model }}
+{% endblock %}
+
+{% block content %}
+<div class="car-details-page">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for image in images %}
+                <div class="swiper-slide">
+                    <img src="{{ url_for('static', filename=image) }}" alt="Фото автомобиля" class="swiper-slide-img">
+                </div>
+            {% endfor %}
+        </div>
+        <!-- Добавляем пагинацию -->
+        <div class="swiper-pagination"></div>
+        <!-- Добавляем стрелки навигации -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+    <div class="car-actions">
+        <div class="price">{{ car.price }} руб.</div>
+        <a href="{{ url_for('test_drive_form', car_id=car.id) }}" class="btn btn-primary">Записаться на тест-драйв</a>
+    </div>
+
+    <div class="col-md-12">
+        <!-- Информация об автомобиле -->
+        <h2>{{ car.brend }} {{ car.model }}</h2>
+        <table class="car-info-table">
+            <tbody>
+                <tr>
+                    <th scope="row">Год выпуска</th>
+                    <td>{{ car.year }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Пробег</th>
+                    <td>{{ car.mileage }} км</td>
+                </tr>
+                <tr>
+                    <th scope="row">Мощность двигателя</th>
+                    <td>{{ car.horsepower }} л.с.</td>
+                </tr>
+                <tr>
+                    <th scope="row">Тип кузова</th>
+                    <td>{{ car.body_type }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Цвет</th>
+                    <td>{{ car.color }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Объем двигателя</th>
+                    <td>{{ car.motor_volume }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Коробка передач</th>
+                    <td>{{ car.transmission }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Тип топлива</th>
+                    <td>{{ car.type_fuel }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Расход топлива</th>
+                    <td>{{ car.fuel_consumption }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Инициализация Swiper -->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        centeredSlides: true, // Центрирование активного слайда
+    });
+</script>
+{% endblock %}

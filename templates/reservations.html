@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Управление резервациями
+{% endblock %}
+
+{% block content %}
+<div class="reservations-page">
+    <h2>Управление тест-драйвами</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Пользователь</th>
+                <th>Номер телефона</th>
+                <th>Автомобиль</th>
+                <th>Время тест-драйва</th>
+                <th>Статус</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.user.FIO }}</td>
+                <td>{{ reservation.user.phone }}</td>
+                <td>{{ reservation.car.brend }} {{ reservation.car.model }} {{ reservation.car.year }}</td>
+                <td>{{ reservation.date }}</td> 
+                <td>{{ reservation.status }}</td>
+                <td>
+                    <form action="{{ url_for('reservations') }}" method="post">
+                        <input type="hidden" name="reservation_id" value="{{ reservation.id }}">
+                        {% if reservation.status == 'активно' %}
+                        <button type="submit" name="action" value="confirm" class="btn btn-success">Подтвердить</button>
+                        {% endif %}
+                        <button type="submit" name="action" value="delete" class="btn btn-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

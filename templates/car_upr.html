@@ -1,0 +1,163 @@
+{%extends 'base.html'%}
+
+{% block title %}Управление автомобилями{% endblock %}
+
+{% block content %}
+<div class="car-upr-page">
+    <h2>Управление автомобилями</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Модель</th>
+                    <th>Бренд</th>
+                    <th>Тип кузова</th>
+                    <th>Привод</th>
+                    <th>Мощность</th>
+                    <th>VIN</th>
+                    <th>Год</th>
+                    <th>Цена</th>
+                    <th>Пробег</th>
+                    <th>Тип топлива</th>
+                    <th>Расход</th>
+                    <th>Цвет</th>
+                    <th>Объем мотора</th>
+                    <th>Трансмиссия</th>
+                    <th>Надежный</th>
+                    <th>Экономичный</th>
+                    <th>Быстрый</th>
+                    <th>Новый</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in cars %}
+                <tr>
+                    <td>{{ car.id }}</td>
+                    <td>{{ car.model }}</td>
+                    <td>{{ car.brend }}</td>
+                    <td>{{ car.body_type }}</td>
+                    <td>{{ car.drive_type }}</td>
+                    <td>{{ car.horsepower }}</td>
+                    <td>{{ car.VIN }}</td>
+                    <td>{{ car.year }}</td>
+                    <td>{{ car.price }}</td>
+                    <td>{{ car.mileage }}</td>
+                    <td>{{ car.type_fuel }}</td>
+                    <td>{{ car.fuel_consumption }}</td>
+                    <td>{{ car.color }}</td>
+                    <td>{{ car.motor_volume }}</td>
+                    <td>{{ car.transmission }}</td>
+                    <td>{{ car.reliable }}</td>
+                    <td>{{ car.economical }}</td>
+                    <td>{{ car.for_evening_walk }}</td>
+                    <td>{{ car.aesthetic }}</td>
+                    <td class="delete-cell">
+                        <form action="{{ url_for('car_upr') }}" method="post" onsubmit="disableButton(this)">
+                            <input type="hidden" name="car_id" value="{{ car.id }}">
+                            <input type="hidden" name="action" value="delete">
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('edit_car', car_id=car.id) }}" class="btn btn-primary">Редактировать</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Форма для добавления нового автомобиля -->
+    <h3>Добавить новый автомобиль</h3>
+    <form action="{{ url_for('car_upr') }}" method="post" enctype="multipart/form-data" onsubmit="disableButton(this)">
+        <div class="form-group">
+            <label for="model">Модель</label>
+            <input type="text" class="form-control" id="model" name="model" required>
+        </div>
+        <div class="form-group">
+            <label for="brend">Бренд</label>
+            <input type="text" class="form-control" id="brend" name="brend" required>
+        </div>
+        <div class="form-group">
+            <label for="body_type">Тип кузова</label>
+            <input type="text" class="form-control" id="body_type" name="body_type" required>
+        </div>
+        <div class="form-group">
+            <label for="drive_type">Привод</label>
+            <input type="text" class="form-control" id="drive_type" name="drive_type" required>
+        </div>
+        <div class="form-group">
+            <label for="vin">VIN</label>
+            <input type="text" class="form-control" id="vin" name="vin" required>
+        </div>
+        <div class="form-group">
+            <label for="year">Год</label>
+            <input type="number" class="form-control" id="year" name="year" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Цена</label>
+            <input type="number" class="form-control" id="price" name="price" required>
+        </div>
+        <div class="form-group">
+            <label for="mileage">Пробег</label>
+            <input type="number" class="form-control" id="mileage" name="mileage" required>
+        </div>
+        <div class="form-group">
+            <label for="fuel_type">Тип топлива</label>
+            <input type="text" class="form-control" id="fuel_type" name="fuel_type" required>
+        </div>
+        <div class="form-group">
+            <label for="fuel_consumption">Расход топлива</label>
+            <input type="text" class="form-control" id="fuel_consumption" name="fuel_consumption" required>
+        </div>
+        <div class="form-group">
+            <label for="color">Цвет</label>
+            <input type="text" class="form-control" id="color" name="color" required>
+        </div>
+        <div class="form-group">
+            <label for="motor_volume">Объем мотора</label>
+            <input type="text" class="form-control" id="motor_volume" name="motor_volume" required>
+        </div>
+        <div class="form-group">
+            <label for="transmission">Трансмиссия</label>
+            <input type="text" class="form-control" id="transmission" name="transmission" required>
+        </div>
+        <div class="form-group">
+            <label for="horsepower">Мощность двигателя (л.с.)</label>
+            <input type="number" class="form-control" id="horsepower" name="horsepower" required>
+        </div>
+        <div class="form-group">
+            <label for="reliable">Надежность</label>
+            <input type="checkbox" class="form-check-input" id="reliable" name="reliable">
+        </div>
+        <div class="form-group">
+            <label for="economical">Экономичность</label>
+            <input type="checkbox" class="form-check-input" id="economical" name="economical">
+        </div>
+        <div class="form-group">
+            <label for="for_evening_walk">Быстрый</label>
+            <input type="checkbox" class="form-check-input" id="for_evening_walk" name="for_evening_walk">
+        </div>
+        <div class="form-group">
+            <label for="aesthetic">Новый</label>
+            <input type="checkbox" class="form-check-input" id="aesthetic" name="aesthetic">
+        </div>
+        <div class="form-group">
+            <label for="images">Фотографии</label>
+            <input type="file" class="form-control" id="images" name="images" multiple>
+        </div>
+        <input type="hidden" name="action" value="add">
+        <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+</div>
+
+<script>
+    function disableButton(form) {
+        // Отключаем кнопку отправки формы
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.innerText = 'Отправка...';
+    }
+</script>
+{% endblock %}  

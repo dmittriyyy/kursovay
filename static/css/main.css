@@ -1,0 +1,460 @@
+/* Стили к header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+}
+
+.header__img {
+  height: 48px;
+  width: 90px;
+}
+
+.price-value {
+  color: green;
+  font-weight: bold;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+header, footer {
+  padding: 20px;
+}
+
+.page {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  
+}
+
+.content {
+  max-width: 1200px; /* Увеличиваем максимальную ширину контента */
+  margin: 0 auto;
+  padding: 60px 20px; /* Убедитесь, что верхний отступ достаточно большой, чтобы не перекрывать заголовок */
+  padding-top: 100px; /* Добавляем дополнительный отступ сверху */
+  flex: 1 1 auto;
+}
+
+.bg-body-tertiary {
+  background-color: #fff !important;
+}
+.autosalon-page{
+  width: 70%;
+  margin-left: 200px;
+}
+/* Стили для страницы autosalon.html */
+.autosalon-page .row {
+  padding: 50px 0;
+}
+
+.autosalon-page .seperator {
+  margin-bottom: 30px;
+  width: 35px;
+  height: 3px;
+  background: #777;
+  border: none;
+}
+
+.autosalon-page .title {
+  text-align: center;
+}
+
+.autosalon-page .title .row {
+  padding: 50px 0 0;
+}
+
+.autosalon-page .title h1 {
+  text-transform: uppercase;
+}
+
+.autosalon-page .title .seperator {
+  margin: 0 auto 10px;
+}
+
+.autosalon-page .item {
+  position: relative;
+  margin-bottom: 30px;
+  min-height: 1px;
+  float: left;
+  -webkit-box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+  -webkit-backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: transform 0.3s ease;
+  width: 100%; /* Убедитесь, что ширина элемента 100% */
+}
+
+.autosalon-page .item:hover {
+  transform: translateY(-5px);
+}
+
+.autosalon-page .item .item-in {
+  background: #fff;
+  padding: 40px;
+  position: relative;
+  border-radius: 10px;
+  width: 100%; /* Убедитесь, что ширина элемента 100% */
+}
+
+.autosalon-page .item .item-in:hover:before {
+  width: 100%;
+}
+
+.autosalon-page .item .item-in::before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  height: 2px;
+  width: 0%;
+  background: #333333;
+  right: 0px;
+  -webkit-transition: width 0.4s;
+  transition: width 0.4s;
+}
+
+.autosalon-page .item h4 {
+  font-size: 18px;
+  margin-top: 25px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.autosalon-page .item p {
+  font-size: 14px;
+  color: #555;
+}
+
+.autosalon-page .item a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #666666;
+  margin-top: 10px;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.autosalon-page .item a i {
+  opacity: 0;
+  padding-left: 0px;
+  transition: 0.4s;
+  font-size: 24px;
+  display: inline-block;
+  top: 5px;
+  position: relative;
+}
+
+.autosalon-page .item a:hover {
+  text-decoration: none;
+  color: #333;
+}
+
+.autosalon-page .item a:hover i {
+  padding-left: 10px;
+  opacity: 1;
+  font-weight: 300;
+}
+
+/* Добавленные стили для изображений */
+.card-img-top {
+  width: 100%; /* Изображение занимает всю ширину карточки */
+  height: auto; /* Высота автоматически подстраивается под пропорции */
+  display: block; /* Убираем лишние отступы */
+  object-fit: cover; /* Изображение заполняет контейнер, сохраняя пропорции */
+}
+
+/* Стили для страницы car_details.html */
+.car-details-page {
+  padding: 50px 0;
+}
+
+.car-details-page .swiper-container {
+  width: 100%;
+  height: 600px; /* Увеличиваем высоту контейнера */
+  overflow: hidden; /* Скрываем слайды за пределами контейнера */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.car-details-page .swiper-wrapper {
+  display: flex;
+  transition-property: transform;
+}
+
+.car-details-page .swiper-slide {
+  position: relative;
+  width: 100%; /* Устанавливаем ширину слайда на 100% */
+  height: 100%; /* Устанавливаем высоту слайда на 100% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.car-details-page .swiper-slide-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Изменено на contain, чтобы изображение не обрезалось */
+}
+
+.car-details-page .swiper-pagination {
+  bottom: 10px;
+}
+
+.car-details-page .swiper-button-prev,
+.car-details-page .swiper-button-next {
+  color: #fff; /* Цвет стрелки */
+  background-color: #000000; /* Цвет круга вокруг стрелки */
+  padding: 20px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Добавляем эффект при наведении */
+}
+
+.car-details-page .swiper-button-prev:hover,
+.car-details-page .swiper-button-next:hover {
+  background-color: #2a62ff; /* Цвет круга при наведении */
+  transform: scale(1.1); /* Увеличиваем размер круга при наведении */
+}
+
+.car-details-page .col-md-12 {
+  padding: 20px;
+}
+
+.car-details-page h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.car-details-page p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.car-details-page strong {
+  font-weight: bold;
+}
+
+/* Стили для таблицы с информацией об автомобиле */
+.car-details-page .car-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+  border-radius: 10px; /* Добавляем скругление углов */
+  overflow: hidden; /* Скрываем содержимое, выходящее за пределы скругленных углов */
+}
+
+.car-details-page .car-info-table th,
+.car-details-page .car-info-table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.car-details-page .car-info-table th {
+  background-color: #fff; /* Цвет фона для заголовков */
+  color: #000000; /* Цвет текста для заголовков */
+  font-weight: bold;
+}
+
+.car-details-page .car-info-table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Цвет фона для четных строк */
+}
+
+.car-details-page .car-info-table tr:hover {
+  background-color: #ddd; /* Цвет фона при наведении */
+}
+
+/* Стили для кнопки и цены */
+.car-details-page .car-actions {
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.car-details-page .car-actions .price {
+  font-size: 24px;
+  font-weight: bold;
+  color: green;
+  margin-bottom: 10px;
+}
+
+.car-details-page .car-actions .btn-primary {
+  padding: 10px 20px; 
+  font-size: 16px;
+  color: #fff;
+  background-color: #2a62ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.car-details-page .car-actions .btn-primary:hover {
+  background-color: #1a4bcc;
+}
+
+/* Стили для страницы cars_by_autosalon.html */
+.cars-by-autosalon-page .row {
+  padding: 50px 0;
+}
+
+.cars-by-autosalon-page .col {
+  padding: 10px;
+  margin-top: -30px /* Уменьшаем отступы между карточками */
+}
+
+.cars-by-autosalon-page .card {
+  width: 100%; /* Убедитесь, что ширина карточки 100% */
+  margin-bottom: 20px; /* Добавляем отступ снизу */
+  height: 100%; /* Карточка занимает всю высоту контейнера */
+  display: flex;
+  flex-direction: column;
+}
+
+.cars-by-autosalon-page .card-body {
+  padding: 20px; /* Увеличиваем отступы внутри карточки */
+  flex: 1; /* Контент занимает всю доступную высоту */
+}
+
+.cars-by-autosalon-page .card-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.cars-by-autosalon-page .price-value {
+  color: green;
+  font-weight: bold;
+}
+
+.cars-by-autosalon-page .btn-group {
+  margin-top: 10px;
+}
+
+.cars-by-autosalon-page .btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+.cars-by-autosalon-page .btn-outline-secondary:hover {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-upr{
+  margin-left: 700px;
+  padding: 10px 20px; 
+  font-size: 16px;
+  color: #fff;
+  background-color: #2a62ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+.btn-upr:hover{
+  background-color:#1a4bcc;
+}
+/* Стили для таблицы */
+.table-responsive {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.table-responsive table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-responsive th,
+.table-responsive td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+  white-space: nowrap; /* Предотвращает перенос текста */
+}
+
+.table-responsive th {
+  background-color: #fff;
+  color: #000000;
+  font-weight: bold;
+}
+
+.table-responsive tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table-responsive tr:hover {
+  background-color: #ddd;
+}
+
+/* Стили для формы добавления нового автомобиля */
+.car-upr-page form {
+  margin-top: 20px;
+}
+
+.car-upr-page .form-group {
+  margin-bottom: 2px;
+}
+
+.car-upr-page .form-control {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.car-upr-page .btn-success {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.car-upr-page .btn-success:hover {
+  background-color: #218838;
+}
+
+/* Стили для ячейки с кнопкой "Удалить" */
+.delete-cell {
+  vertical-align: top; /* Выравниваем ячейку по верхнему краю */
+}
+
+.delete-cell .btn-danger {
+  margin-top: -25px; /* Добавляем отступ сверху для кнопки */
+}

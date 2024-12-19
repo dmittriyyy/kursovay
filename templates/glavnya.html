@@ -1,0 +1,132 @@
+{%extends 'base.html'%}
+
+{%block title%}
+Главная страница
+{% endblock %}
+
+{%block content%}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <!-- Фильтры -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <form class="row g-3" method="GET" action="{{ url_for('glavnya') }}">
+                    <div class="col-md-3">
+                        <label for="brand" class="form-label">Марка авто</label>
+                        <select class="form-select" id="brand" name="brand">
+                            <option value="" {% if not request.args.get('brand') %}selected{% endif %}>Выберите марку</option>
+                            <option value="audi" {% if request.args.get('brand') == 'audi' %}selected{% endif %}>Audi</option>
+                            <option value="bmw" {% if request.args.get('brand') == 'bmw' %}selected{% endif %}>BMW</option>
+                            <option value="vw" {% if request.args.get('brand') == 'vw' %}selected{% endif %}>VW</option>
+                            <option value="toyota" {% if request.args.get('brand') == 'toyota' %}selected{% endif %}>Toyota</option>
+                            <option value="mercedes-benz" {% if request.args.get('brand') == 'mercedes-benz' %}selected{% endif %}>Mercedes-Benz</option>
+                            <option value="lada" {% if request.args.get('brand') == 'lada' %}selected{% endif %}>Lada</option>
+                            <option value="porsche" {% if request.args.get('brand') == 'porsche' %}selected{% endif %}>Porsche</option>
+                            <option value="subaru" {% if request.args.get('brand') == 'subaru' %}selected{% endif %}>Subaru</option>
+                            <!--  другие марки  -->
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="priceRange" class="form-label">Цена</label>
+                        <input type="text" class="form-control" id="priceRange" name="priceRange" value="{{ request.args.get('priceRange') or '' }}" placeholder="От - До">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="horsepower" class="form-label">Мощность двигателя (л.с.)</label>
+                        <input type="text" class="form-control" id="horsepower" name="horsepower" value="{{ request.args.get('horsepower') or '' }}" placeholder="От - До">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="driveType" class="form-label">Привод</label>
+                        <select class="form-select" id="driveType" name="driveType">
+                            <option value="" {% if not request.args.get('driveType') %}selected{% endif %}>Выберите привод</option>
+                            <option value="Передний" {% if request.args.get('driveType') == 'Передний' %}selected{% endif %}>Передний</option>
+                            <option value="Задний" {% if request.args.get('driveType') == 'Задний' %}selected{% endif %}>Задний</option>
+                            <option value="Полный" {% if request.args.get('driveType') == 'Полный' %}selected{% endif %}>Полный</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="bodyType" class="form-label">Тип кузова</label>
+                        <select class="form-select" id="bodyType" name="bodyType">
+                            <option value="" {% if not request.args.get('bodyType') %}selected{% endif %}>Выберите тип кузова</option>
+                            <option value="Седан" {% if request.args.get('bodyType') == 'Седан' %}selected{% endif %}>Седан</option>
+                            <option value="Лифтбек" {% if request.args.get('bodyType') == 'Лифтбек' %}selected{% endif %}>Лифтбек</option>
+                            <option value="Хэтчбек" {% if request.args.get('bodyType') == 'Хэтчбек' %}selected{% endif %}>Хэтчбек</option>
+                            <option value="Купе" {% if request.args.get('bodyType') == 'Купе' %}selected{% endif %}>Купе</option>
+                            <option value="Кабриолет" {% if request.args.get('bodyType') == 'Кабриолет' %}selected{% endif %}>Кабриолет</option>
+                            <option value="Универсал" {% if request.args.get('bodyType') == 'Универсал' %}selected{% endif %}>Универсал</option>
+                            <option value="Кроссовер" {% if request.args.get('bodyType') == 'Кроссовер' %}selected{% endif %}>Кроссовер</option>
+                            <option value="Внедорожник" {% if request.args.get('bodyType') == 'Внедорожник' %}selected{% endif %}>Внедорожник</option>
+                            <option value="Пикап" {% if request.args.get('bodyType') == 'Пикап' %}selected{% endif %}>Пикап</option>
+                            <option value="Минивэн" {% if request.args.get('bodyType') == 'Минивэн' %}selected{% endif %}>Минивэн</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="mileage" class="form-label">Пробег (км)</label>
+                        <input type="text" class="form-control" id="mileage" name="mileage" value="{{ request.args.get('mileage') or '' }}" placeholder="От - До">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" id="reliable" name="reliable" {% if request.args.get('reliable') %}checked{% endif %}>
+                            <label class="form-check-label" for="reliable">
+                                Надежный
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" id="economical" name="economical" {% if request.args.get('economical') %}checked{% endif %}>
+                            <label class="form-check-label" for="economical">
+                                Экономичный
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" id="for_evening_walk" name="for_evening_walk" {% if request.args.get('for_evening_walk') %}checked{% endif %}>
+                            <label class="form-check-label" for="for_evening_walk">
+                                Быстрый
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" id="aesthetic" name="aesthetic" {% if request.args.get('aesthetic') %}checked{% endif %}>
+                            <label class="form-check-label" for="aesthetic">
+                                Новый 
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Применить фильтры</button>
+                        {% if 'manager_id' in session %}
+                        <a href="{{ url_for('car_upr') }}" class="btn-upr">Управление автомобилями</a>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Карточки -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for car in cars %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    {% if car.images %}
+                        <img src="{{ url_for('static', filename=car.images[0]) }}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Фото автомобиля">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='img/no_image.jpg') }}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Фото автомобиля">
+                    {% endif %}
+                    <div class="card-body">
+                        <p class="card-text">{{ car.brend|string + " " + car.model + " " + car.year|string + " " + car.motor_volume + " " + car.transmission }}</p>
+                        <p class="card-text price">Цена: <span class="price-value">{{ car.price }} руб.</span> </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{ url_for('car_details', car_id=car.id) }}" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+{% block footer %}
+
+{%endblock%}
